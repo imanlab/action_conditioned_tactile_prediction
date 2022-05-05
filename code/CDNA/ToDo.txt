@@ -1,0 +1,9 @@
+To Do list:
+
+11. train the model -- ensure the data is in correct format -- playground/train.py
+12.
+
+
+------
+How do they generate the data:
+1.
