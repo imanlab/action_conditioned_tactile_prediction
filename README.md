@@ -40,14 +40,14 @@ The dataset consists of four key features:
 An example of this dataset for one grasp and move sequence in shown below:
 
 <p align="center">
-<img src="https://github.com/imanlab/SPOTS_IML/blob/main/assets/dataset_structure_example.png" alt= “” width="500">
+<img src="https://github.com/imanlab/action_conditioned_tactile_prediction/blob/main/assets/dataset_structure_example.png" alt= “” width="500">
 <p/>
 
 The data set was collected use teleoperation of two robots. the human controller attempted to create motions that generate high volumes of object slip (10% of the data is slip).
 
 A gif of dataset collection is shown below:
 <p align="center">
-<img src="https://github.com/imanlab/SPOTS_IML/blob/main/assets/datacollection_example.gif" alt= “” width="500">
+<img src="https://github.com/imanlab/action_conditioned_tactile_prediction/blob/main/assets/datacollection_example.gif" alt= “” width="500">
 <p/>
 
 
@@ -76,87 +76,3 @@ The dataset is stored in three formats depending on use case:
 There are two different folders, one training, one testing.
 
 Use: data_formatting/generate_image_dataset.py to create an image dataset. Adjust the global variable "data_dir" to point to the correct dataset "test_dataset", "train_dataset" or other subset datasets you may be interested in.
-
-
-
-
-
-
-
-
-# Simultaneous Prediction of Optical and Tactile Sensation
-
-This repository contains the code and resources for the T-RO 2023 paper: **Combining Vision and Touch for Physical Robot Interaction**.
-
-**First Author**: Willow Mandil
-**Second Author**: Amir Ghalamzan E
-
-We examine the benefits of incorporating tactile sensation into video prediction models for physical robot interactions. By proposing three multi-modal integration approaches and comparing the performance of these tactile-enhanced video prediction models, we demonstrate the potential of using both visual and tactile feedback for improved scene prediction accuracy and a better understanding of cause-effect relationships during robot interactions. We also introduce two new datasets of robot pushing using a magnetic-based tactile sensor for unsupervised learning.
-
-<p align="center">
-<img src="https://github.com/imanlab/SPOTS_IML/blob/main/assets/SPOTS_abstract_5%20(1).jpg" alt= “” width="500">
-<p/>
-
-## Datasets
-
-Two datasets and their descriptions can be found at:
-
-  - [Marked Friction Dataset](https://github.com/imanlab/object_pushing_MarkedFrictionDataset)
-  - [Household Objects Dataset](https://github.com/imanlab/)
-
-<p align="center">
-<img src="https://github.com/imanlab/SPOTS_IML/blob/main/assets/data_collection_household%20(1).jpg" alt= “” width="500">
-<p/>
-
-<p align="center">
-<img src="https://github.com/imanlab/SPOTS_IML/blob/main/assets/DatasetExampleLarge%20(1).jpeg" alt= “” width="500">
-<p/>
-
-## Requirements
-
-- GPU access is recommended for faster training (we used two Nvidia RTX A6000 GPUs)
-- Python 3.8
-- PyTorch, torchvision
-- SciPy
-- NumPy
-- Matplotlib
-- OpenCV
-- tqdm
-
-To install dependencies, use:
-```bash
-pip install -r requirements.txt
-```
-
-### Dataset formatting:
-Download the dataset you wish from the section above using:
-```bash
-git clone https://github.com/imanlab/object_pushing_MarkedFrictionDataset.git
-```
-
-The dataset requires formatting for use in the training and testing scripts.
-
-To format the data, apply [format_data.py](https://github.com/imanlab/SPOTS_IML/data_formatting/format_data.py). The function requires several user inputs, for example, the length of the context window, the length of the prediction horizon, where to save the data, whether to convert the tactile data to tactile images and finally, desired image height and width.
-
-```bash
-python3 format_data.py
-```
-
-### Training and Testing:
-We have simplified the training and testing procedure of the models presented in this paper. 
-
-To train the model run:  
-```bash
-python3 model_trainer.py
-```
-
-To test the model run:  
-```bash
-python3 model_trainer.py
-```
-
-There are a variety of input arguments that can be adjusted to suit your needs. The extensive list below explains each argument for the two programs. An example of the use of these input arguments is shown below: 
-
-```bash
-python3 model_trainer.py --model_name="SPOTS_SVG_ACTP" --batch_size=32 --epochs=100 --device="cuda:0" --model_save_path= "/home/.../SPOTS_SVG_ACTP/" --train_data_dir="/home/.../test_dataset/" --scaler_dir="/home/.../scalar_dataset/" 
-```
