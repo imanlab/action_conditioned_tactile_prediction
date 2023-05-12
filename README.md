@@ -6,8 +6,13 @@ This repository will provide everything you need to get started with tacitle pre
 ## Paper:
 Action Conditioned Tactile Prediction: case study on slip prediction
 
+- **First Author**: Willow Mandil
+- **Second Author**: Kiyanoush Nazari
+- **Third Author**: Amir Ghalamzan E
+
+
 Bibtex:
-```
+```bash
 @article{mandil2022action,
   title={Action conditioned tactile prediction: a case study on slip prediction},
   author={Mandil, Willow and Nazari, Kiyanoush and others},
@@ -26,9 +31,30 @@ Tactile predictive models can be useful across several robotic manipulation task
 ## Dataset
 To run training and testing of the models and pipeline presented in this work, please download the dataset from:  https://github.com/imanlab/tactile_prediction_flat_dataset
 
+The dataset consists of four key features:
+- **Tactile sensation** from the Xela uSkin magnetic based tactile sensor (4x4 taxels). Each taxel  reads sheer X and Y forces as well as a normal force (uncallibrated).
+- **Robot state** in both joint space and task space (euler and quaternion available). For our research we use euler task space robot pose.
+- **Object pose** in euler angles. This pose is collected from an aruco marker placed on the object and observed with the intel realsense D435 camera.
+- **Slip signal** which is generated from the object pose itself. This signal is used for training the random forrests algorithm to learn the correlation between tactile sensation and object slip.
+
+An example of this dataset for one grasp and move sequence in shown below:
+
 <p align="center">
 <img src="https://github.com/imanlab/SPOTS_IML/blob/main/assets/dataset_structure_example.png" alt= “” width="500">
 <p/>
+
+The data set was collected use teleoperation of two robots. the human controller attempted to create motions that generate high volumes of object slip (10% of the data is slip).
+
+A gif of dataset collection is shown below:
+<p align="center">
+<img src="https://github.com/imanlab/SPOTS_IML/blob/main/assets/datacollection_example.gif" alt= “” width="500">
+<p/>
+
+
+
+
+
+
 
 
 ### 1. General Info
